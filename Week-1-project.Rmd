@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,6 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I am really interested in Chinese History, so I will talk about [Deng Xiaoping](https://en.wikipedia.org/wiki/Deng_Xiaoping), my favorite chinese politician. He reformed and opened up China to the world.
+
+![China to the world](https://upload.wikimedia.org/wikipedia/commons/1/1c/Deng_Xiaoping.jpg).
