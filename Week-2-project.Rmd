@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,16 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/Library-small.rda", 
+              dest="Library-small.rda")
+```
+DESCRIBE THE PROBLEM
+```{r}
+load("Library-small.rda")
+nrow(Inv)
+```
+
+
+
+
