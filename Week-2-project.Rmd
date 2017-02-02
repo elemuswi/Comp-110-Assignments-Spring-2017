@@ -17,9 +17,20 @@ download.file("http://tiny.cc/dcf/Library-small.rda",
 DESCRIBE THE PROBLEM
 ```{r}
 load("Library-small.rda")
-nrow(Inv)
+
 ```
 
 
+```{r}
+nrow(Inv)
+nrow(Bks)
+names(Inv)
+names(Bks)
+summary(Inv)
+summary(Bks)
+```
 
+```{r}
+Inv %>%group_by(Current.Status) %>%tally()
+```
 

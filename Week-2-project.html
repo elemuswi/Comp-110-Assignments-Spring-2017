@@ -124,12 +124,133 @@ $(document).ready(function () {
 <div id="esteban-lemus-wirtz" class="section level2">
 <h2>Esteban Lemus Wirtz</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Feb 1 20:29:38 2017.</p>
+<p>Compiled on Wed Feb 1 20:53:41 2017.</p>
 <!-- put your content after this line -->
 <pre class="r"><code>download.file(&quot;http://tiny.cc/dcf/Library-small.rda&quot;, 
               dest=&quot;Library-small.rda&quot;)</code></pre>
 <p>DESCRIBE THE PROBLEM</p>
 <pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+<pre class="r"><code>nrow(Inv)</code></pre>
+<pre><code>## [1] 2000</code></pre>
+<pre class="r"><code>nrow(Bks)</code></pre>
+<pre><code>## [1] 3765</code></pre>
+<pre class="r"><code>names(Inv)</code></pre>
+<pre><code>##  [1] &quot;Shelving.Location&quot;     &quot;Item.Type&quot;            
+##  [3] &quot;Call.Number&quot;           &quot;Author&quot;               
+##  [5] &quot;Title.or.Description&quot;  &quot;Textual.Holdings&quot;     
+##  [7] &quot;Material.Format&quot;       &quot;OCLC.Number&quot;          
+##  [9] &quot;ISBN&quot;                  &quot;Item.Barcode&quot;         
+## [11] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+## [13] &quot;Loan.Date.Due&quot;         &quot;Issued.Count&quot;         
+## [15] &quot;Issued.Count.YTD&quot;      &quot;Last.Issued.Date&quot;     
+## [17] &quot;Last.Inventoried.Date&quot; &quot;Item.Deleted.Date&quot;</code></pre>
+<pre class="r"><code>names(Bks)</code></pre>
+<pre><code>##  [1] &quot;OCLC.Number&quot;          &quot;Format&quot;               &quot;Subject&quot;             
+##  [4] &quot;Title&quot;                &quot;Author&quot;               &quot;Publication.Date&quot;    
+##  [7] &quot;Edition&quot;              &quot;Publisher&quot;            &quot;ISBN&quot;                
+## [10] &quot;Language&quot;             &quot;Physical.Description&quot; &quot;Genre&quot;               
+## [13] &quot;LC.Call.Number&quot;       &quot;Dewey.Call.Number&quot;    &quot;Local.Call.Number&quot;</code></pre>
+<pre class="r"><code>summary(Inv)</code></pre>
+<pre><code>##  Shelving.Location   Item.Type         Call.Number       
+##  Length:2000        Length:2000        Length:2000       
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##                                                          
+##     Author          Title.or.Description Textual.Holdings  
+##  Length:2000        Length:2000          Length:2000       
+##  Class :character   Class :character     Class :character  
+##  Mode  :character   Mode  :character     Mode  :character  
+##                                                            
+##                                                            
+##                                                            
+##                                                            
+##  Material.Format     OCLC.Number            ISBN          
+##  Length:2000        Min.   :     1179   Length:2000       
+##  Class :character   1st Qu.:  2697244   Class :character  
+##  Mode  :character   Median : 32195158   Mode  :character  
+##                     Mean   :139006971                     
+##                     3rd Qu.: 57349684                     
+##                     Max.   :895728306                     
+##                                                           
+##  Item.Barcode           Cost           Current.Status    
+##  Length:2000        Length:2000        Length:2000       
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##                                                          
+##  Loan.Date.Due                  Issued.Count     Issued.Count.YTD
+##  Min.   :2014-06-17 23:59:59   Min.   :  0.000   Min.   : 0.000  
+##  1st Qu.:2015-07-28 05:59:59   1st Qu.:  0.000   1st Qu.: 0.000  
+##  Median :2015-08-12 23:59:59   Median :  1.000   Median : 0.000  
+##  Mean   :2015-07-08 15:50:12   Mean   :  2.591   Mean   : 0.263  
+##  3rd Qu.:2015-09-20 23:59:59   3rd Qu.:  2.000   3rd Qu.: 0.000  
+##  Max.   :2015-11-19 23:59:59   Max.   :239.000   Max.   :38.000  
+##  NA's   :1978                                                    
+##  Last.Issued.Date              Last.Inventoried.Date        
+##  Min.   :2001-01-01 01:00:00   Min.   :2014-06-26 11:05:49  
+##  1st Qu.:2007-04-22 10:28:15   1st Qu.:2015-06-15 15:16:08  
+##  Median :2011-04-18 02:08:00   Median :2015-06-24 10:35:32  
+##  Mean   :2010-03-14 16:30:25   Mean   :2015-05-25 16:58:40  
+##  3rd Qu.:2013-09-14 06:53:15   3rd Qu.:2015-07-08 09:31:22  
+##  Max.   :2015-07-20 10:15:00   Max.   :2015-07-23 15:26:10  
+##  NA's   :968                   NA's   :1837                 
+##  Item.Deleted.Date            
+##  Min.   :2015-02-02 08:54:13  
+##  1st Qu.:2015-04-21 09:53:54  
+##  Median :2015-06-04 09:43:21  
+##  Mean   :2015-05-21 12:17:50  
+##  3rd Qu.:2015-06-24 13:14:34  
+##  Max.   :2015-07-24 08:22:31  
+##  NA's   :1885</code></pre>
+<pre class="r"><code>summary(Bks)</code></pre>
+<pre><code>##   OCLC.Number           Format            Subject         
+##  Min.   :     1179   Length:3765        Length:3765       
+##  1st Qu.:  2194721   Class :character   Class :character  
+##  Median : 27318536   Mode  :character   Mode  :character  
+##  Mean   :115610075                                        
+##  3rd Qu.: 54448715                                        
+##  Max.   :904622949                                        
+##     Title              Author          Publication.Date   Edition         
+##  Length:3765        Length:3765        Min.   :1775     Length:3765       
+##  Class :character   Class :character   1st Qu.:1963     Class :character  
+##  Mode  :character   Mode  :character   Median :1986     Mode  :character  
+##                                        Mean   :1972                       
+##                                        3rd Qu.:2000                       
+##                                        Max.   :2015                       
+##   Publisher             ISBN             Language        
+##  Length:3765        Length:3765        Length:3765       
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##  Physical.Description    Genre           LC.Call.Number    
+##  Length:3765          Length:3765        Length:3765       
+##  Class :character     Class :character   Class :character  
+##  Mode  :character     Mode  :character   Mode  :character  
+##                                                            
+##                                                            
+##                                                            
+##  Dewey.Call.Number  Local.Call.Number 
+##  Length:3765        Length:3765       
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+## </code></pre>
+<pre class="r"><code>Inv %&gt;%group_by(Current.Status) %&gt;%tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
 </div>
 </div>
 
