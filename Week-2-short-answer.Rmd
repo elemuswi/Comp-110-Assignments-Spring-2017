@@ -1,13 +1,150 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+Esteban Lemus Wirtz
 
-<!-- leave this material as is -->
-Compiled on `r date()`.
+##Chapter 1
 
-```{r include = FALSE}
+1.1. 
+Taffy= value of a variable
+Year= Quantitative variable
+Sex= Categorical variable
+Name= Categorical variable
+Count= Quantitative variable
+
+1.2
+This is not clean becaues in the values of the variable president are not consistent, sometimes they write family name and then given and other times the other way round. The part that states how their years in office should be made two variables one for the start year and another one for the end year. The answers for number of states mix categorical and quantitative answers.
+
+1.4
+Table A:
+Variables: Year, Algeria,Brazil,Colombia
+Case:Year
+Table B:
+Variables: Country, Y2000, Y2001
+Case: Country
+Table C:
+Variables: Country, Year, Value
+Case: Country in a year
+
+1.5 
+1. There are 8 variables
+2. Each case is an airport
+3. Categorical variables: faa, name, dst, tzone, tz
+Quantitative variables:lat,lon,alt
+
+##Chapter 2 
+
+```{r, include=FALSE}
 library(DataComputing)
+data(package="mosaicData")
 ```
-<!-- put your content after this line -->
+2.2
+2 and 3
 
-Here is my content!
+2.3
+Current Population Survey
+
+2.4
+The package is named using "="
+
+2.6
+3. Should not use ""
+5. Should not have spaces
+9. A function has the same name already 
+
+2.7
+```{r}
+#install.packages("nycflights13")
+#data(flights,package="nycflights13")
+#names(flights)
+```
+1. 19 Variables
+2. 336776 cases
+3. Departing flights from YC
+4. Quantitative:year","month","day","dep_time","sched_dep_time","dep_delay","arr_time","sched_arr_time","arr_delay","air_time","distance","hour","minute","time_hour"    
+Categorical: "carrier","flight","tailnum","origin","dest" 
+5. air_time= minutes 
+distance= miles  ASK AYOUB 
+
+2.8
+a. Improper syntax for function arument
+b. No assignment operator
+c. Invalid object name
+d. Unmatched quotes in character string
+e. No mistake
+
+2.9 
+For a name: "-" and "_"
+In a string: all 
+
+2.10
+
+1. 76 variables
+2. Trunk Fat Mass
+3. 23018
+4.Count
+5. Dem,Rep, Lib and UNA 
+
+##Chapter3
+
+3.1 
+1. Fireplace %>% group_by...
+2.Dataset %>% fireplace
+3. Dataset %>% group_by(fireplace= sum().)
+4. group_by (fireplace)
+
+3.2
+First you need to specify which dataset you want to work on, so BabyNames should come before %>%.
+
+3.3
+Help has incorrect arguments, first you should define NHANES and then you can use help.
+
+3.4
+1.b 2.a 3.d 4.d 5.a 6.c 7.c 8.a 9.c 10.a 11.c 12.a 13.a 14.d 15.d 16.a 17.d 18.a 19.d
+
+3.5 
+a) Brain weight in kg
+b) 83 cases
+c) Each species 
+d) Carnivore, omnivore,insctivore or herbivore
+
+3.6
+C calculates the mean
+
+##Chapter 4 
+4.1 
+*one* italics
+**two** bold
+*three Footnote mark 
+# Four Heanding
+` five ` monospaced font for commands
+##Six Subheading
+
+4.2 
+a) Wrong punctuation used. Should use ``` instead of '''
+b)Wrong punctuation used. Should use ``` instead of """"
+c) The last line misses one more `
+d) The code should be one line below ```{r}
+e) Wrote ```` instead of ```.
+
+4.3
+It will have a heading, a small tex with the word easy italized and some code that will print 5.
+
+4.4  
+1. Both
+2.File
+3. Neither
+4. URL
+5. Neither
+6. Both
+
+4.5 
+#Birds of the World
+##JJ Audubon
+
+*Blue Jays
+*Cardinals
+*Robins
+*Crows
+* Sparrows
+
+

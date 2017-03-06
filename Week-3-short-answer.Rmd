@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,88 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 5 
+5.1 
+```{r}
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9) +facet_grid(~race)
+```
+5.2 
+```{r}
+WorldMap(data=HappinessIndex, key="country", fill="corruption")
+```
+
+###Chapter 6
+6.5
+b.State and Polling Organization 
+
+6.6
+d. Glyph: Rectangle. Graphical attribute: color and text.
+
+6.7 
+e.Date of the poll 
+
+6.8
+```{r}
+Small <-
+  NCHS %>%
+  sample_n(size=5000)
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker) 
+```
+
+###Chapter 7
+
+7.1
+a) data %>% summarise(avg=mean(variable))
+b) mutate() 
+c) arrange(desc(variable)) 
+d) filter()
+e) select()
+f) group_by()%>% summarise()
+
+7.4 
+a) BabyNamees is the wrong dataset and group_by has a string inside and it should be the name of a variable in the dataset.
+b) Tmp is repeated in the summarise part. Tmp should only appear once in the line where it is assigned to a value.
+c) The %>% is missing.
+
+7.5
+a) BabyNames%>%
+   arrange(sex,count)
+b) BabyNames%>%
+   filter(sex=="F") 
+c)  BabyNames%>%
+   filter(sex=="M", count>n) 
+   *n could be greater than 22.
+d)  BabyNames%>%
+  summarise(total= sum(count)
+e) BabyNames%>%
+   select(name,count)
+
+7.7
+a) BabyNames%>%
+   group_by(year, sex)%>%
+   summarise(total=sum(count))
+No need to write the dataset again, R already knows we are working on it.
+b) ZipGeography%>%  # The mistake was here they had a <- instead of the pipe.
+   group_by(State)%>%
+   summarise(pop=sum(Population))
+c) Minneapolis2013 %>%
+      group_by(First) %>%  # The mistake was here they had a <- instead of the pipe.
+      summarise(voteReceived=n())
+d) The order is incorrect
+Minneapolis2013 %>%
+      group_by(First) %>%  
+      summarise(voteReceived=n())
+7.11
+a) sex, count, mean_age
+b) diagnosis, count, mean_age
+c) sex,diagnosis, count, mean_age
+d) age,diagnosis, count, mean_age
+c) age, count, mean_age
+
+7.12
+1. nrow()
+2. names(dataset)
+3. help(dataset)
+4.library(package)
+5. group_by
+6 group_by(variable)%>% summarise(coun= sum(variable))

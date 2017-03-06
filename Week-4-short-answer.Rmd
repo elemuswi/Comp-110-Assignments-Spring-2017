@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,90 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 8
+8.1
+a) Add a layer of glyphs
+b) Add a layer of glyphs
+c) Construct the graphics frame
+d) Change the scale for the frame
+e) Set an axis label
+f) Divede the frame into facets
+g) Add a layer of glyphs
+h) Construct the graphics frame
+
+8.2
+```{r}
+library(mosaicData)
+library(ggplot2)
+```
+Graph 1
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=age))+
+  geom_point(aes(shape=married))+
+  facet_wrap(~sector)+ylim(0,30)
+```
+Graph 2
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=age))+
+  geom_point()+
+  facet_grid(sex~married)+ylim(0,40)
+
+```
+8.3 
+Graph A
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=age))+
+  geom_point()+ylim(0,30)
+```
+Graph B
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=age))+
+  geom_point(aes(shape=sex))+ylim(0,30)
+```
+Graph C  ASK AYOUB
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=age))+
+  geom_point(aes(shape=sex))+
+  facet_grid(married~.)+ylim(0,30)
+```
+Graph D
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=age))+
+  geom_point(aes(shape=married))+ylim(0,30)
+```
+
+
+##Chapter 9
+9.1 
+a) Summary Function
+b) Data Verb
+c) Quick Presentation ASK LE LION
+d) Transformation ASK WHAT MEAN WOULD BE 
+e) Data Verb
+f) Quick Presentatoin
+g) Summary Function
+h) Transformation
+i) Quick Presentation ASK LE LION 
+
+9.3
+1. To find the color of diamonds that is the largest on average
+```{r}
+diamonds %>%
+  group_by(color)%>%
+  summarise(avg=mean(carat))%>%
+  head(1)
+```
+1. To find the clarity of diamonds that has the largest average table per carat  ASK ASK 
+```{r}
+diamonds %>%
+  group_by(color)%>%
+  summarise(avg=mean(table))%>%
+  head(1)
+```
+

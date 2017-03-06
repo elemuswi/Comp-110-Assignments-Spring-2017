@@ -14,23 +14,34 @@ library(DataComputing)
 download.file("http://tiny.cc/dcf/Library-small.rda", 
               dest="Library-small.rda")
 ```
-DESCRIBE THE PROBLEM
+The data used in this mini-project was obtained from http://tiny.cc/dcf/Library-small.rda and 
+contains records on books from the Macalester College library. 
+
+##Basics
 ```{r}
 load("Library-small.rda")
 
 ```
 
-
+In the following chunk we will further exlpore the dataset used. We will obtain the number of rows from `Inv` and `Bks` and the names of the variables. This data is a subset of a bigger data set that includes data on how many times books have been borrowed. We also include a short summary of the datasets that tells us the number of cases and the names of the variables of the data.
 ```{r}
 nrow(Inv)
 nrow(Bks)
 names(Inv)
 names(Bks)
-summary(Inv)
-summary(Bks)
+
 ```
 
 ```{r}
-Inv %>%group_by(Current.Status) %>%tally()
+Inv %>%
+  group_by(Current.Status) %>%
+  tally()
 ```
+The above table tells us how many books have been withdrawn, the ones available, the missing ones and the ones on loan.
 
+```{r}
+Inv %>%
+  group_by(Issued.Count) %>%
+  tally()
+```
+This table tells us how many books have been borrowed 0, 1,2 ... times.  Issued count tells the number of times a book was borrowed and n is the number of books that have been borrowed that number of times.

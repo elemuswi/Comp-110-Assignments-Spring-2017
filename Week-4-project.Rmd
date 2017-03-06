@@ -1,13 +1,79 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
+Question 1
+```{r}
+birthsPerDay<-Birthdays%>%
+  group_by(date)%>%
+  summarise(dailyBirths=sum(births))
+ggplot(data=birthsPerDay,aes(x=date,y=dailyBirths))+geom_point()
+```
+Question 2
+a)
+```{r}
+birthsPerDay %>%
+  mutate(week=week(date))%>%
+  group_by(week) %>% summarise(total=sum(dailyBirths)) %>%
+  ggplot(aes(x=week,y=total))+geom_point()
+```
+b)
+```{r}
+monthlyBirths <- Birthdays%>%
+  group_by(month) %>% summarise(total=sum(births)) 
+ggplot(data=monthlyBirths,aes(x=month,y=total))+geom_point()
+```
+c)
+```{r}
+JulianBirths <- Birthdays%>%
+  mutate(JulDay=yday(date))%>%
+  group_by(JulDay) %>%
+  summarise(total=sum(births)) 
+ggplot(data=JulianBirths,aes(x=JulDay,y=total))+geom_point()
+```
 
-Here is my content!
+Question 3
+```{r}
+Weekly <- Birthdays%>%
+  mutate(WD=wday(date,label=TRUE))%>%
+  group_by(WD) %>%
+  summarise(total=sum(births)) 
+ggplot(data=Weekly,aes(x=WD,y=total))+geom_point()
+```
+
+Question 4
+```{r}
+MyTwoYears <- Birthdays%>%
+  filter(year %in% c(1980,1981))%>%
+  group_by(date) %>%
+  summarise(total=sum(births)) 
+P=ggplot(data=MyTwoYears,aes(x=date,y=total, color=wday(date, label=TRUE)))+geom_point()
+P
+```
+
+Question 5 
+```{r}
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv", stringsAsFactors = FALSE) %>%
+  mutate(date=as.POSIXct(lubridate::dmy(date)))
+P + geom_vline(data = Holidays, aes(xintercept=as.numeric(date)))
+```
+
+Question 6
+```{r}
+ggplot(data=MyTwoYears,aes(x=date,y=total, color=wday(date, label=TRUE)))+geom_point()+ geom_vline(data = Holidays, aes(xintercept=as.numeric(date)))+
+  geom_text(data=Holidays %>% filter(year(date)%in%c(1980,1981)), aes(x=date, y=10000, label=holiday), font.size = 3, angle=90, color="black")
+
+```
+
+
+
+
