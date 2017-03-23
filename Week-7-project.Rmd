@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,45 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+library(rvest)
+library(lubridate)
+page <- "http://en.wikipedia.org/wiki/List_of_nuclear_reactors"
+table_nodes <- page %>%
+  read_html() %>%
+  html_nodes("table")
+
+table_list <-
+  html_table(table_nodes[1:30], fill = TRUE)
+```
+
+1. Find the table element:
+```{r}
+japanTable <- table_list[[24]]
+```
+
+2. Remove first row
+```{r}
+japanTable2 <- japanTable[-1,]
+names(japanTable2) <-c("name","ractorNo", "reactorType","reactorModel","status","capacityNet","capacityGross","constructionDate","commercialDate","Closure")
+```
+
+Change dates
+```{r}
+japanTable3 <-japanTable2 %>%
+  mutate(constrDate = lubridate::dmy(constructionDate)) %>%
+  mutate(comDate=lubridate::dmy(commercialDate))
+```
+
+
+4. Visualization
+```{r}
+ggplot(data= japanTable3, aes(y= capacityNet, x=constrDate, color=reactorType))+geom_point()
+```
+
+5.
+```{r}
+ggplot(data= japanTable3, aes(y=name, x=constrDate))+geom_segment(aes(yend=name, xend=comDate))
+```
+
+
