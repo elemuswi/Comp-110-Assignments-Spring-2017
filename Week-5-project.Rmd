@@ -1,13 +1,99 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Question 1
+1) Toyota is a higher income source, since it pays more dividends
+2) Yes, Toyota is the company who had a the highest appreciation and highest dividends, while Honda had the biggest depreciation and lowest dividends.
+
+###Question 2: Getting Price Data
+```{r}
+companies <- c("XOM", "RDS-A", "CVX")
+Prices <- 
+  read_stock_prices(companies, what="daily",
+                  start_year=2000, end_year=2015)
+```
+
+```{r}
+ggplot(data=Prices,aes(y=close, x=date))+geom_line(aes(color=company))
+```
+
+###Question 3: Buy/Sell Profit
+```{r}
+a <- c("buy", "sell")
+b <- ymd(c("2006-01-03","2014-12-30"))
+Actions <- data.frame(action=a, date=b)
+```
+
+
+```{r}
+Pricesx <- 
+  Actions %>%
+  left_join(Prices) %>%
+  select(action, company, adj_close)%>%
+  spread(key = action, value = adj_close)
+```
+
+```{r}
+ProfitPercent <- 
+  Actions %>%
+  left_join(Prices) %>%
+  select(action, company, adj_close)%>%
+  spread(key = action, value = adj_close) %>%
+  mutate(ProfitPercentage= ((sell/buy)*100))
+```
+###Question 4: Indexing Prices
+```{r}
+ref_date <- ymd("2005-01-03")
+Reference <-
+  Prices %>% 
+  filter(date==ref_date) %>%
+  select(company, standard=close)
+```
+
+Join Prices and Reference
+```{r}
+PricesRef <-
+  Prices %>%
+  left_join(Reference) %>%
+  mutate(Index = close/standard)
+```
+
+```{r}
+ggplot(data=PricesRef, aes(y=Index, x=date, color=company))+geom_line()
+```
+
+
+###Question 5: Dividends 
+```{r}
+Dividends <- 
+  read_stock_prices(companies, what="dividends") 
+```
+
+Join Dividends to Actions using company to match:
+```{r}
+DividendsDates <-
+  Dividends %>%
+  left_join(Pricesx) %>%
+  mutate(dividensPerStock= buy*dividends)
+```
+
+```{r}
+DividendsDates%>%
+  filter(date>ymd("2005-01-03")) %>%
+  filter(date<ymd("2014-12-30")) %>%
+  group_by(company) %>%
+  summarise(totalDividends=sum(dividends))
+```
+
+
+
