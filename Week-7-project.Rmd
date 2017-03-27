@@ -30,7 +30,7 @@ japanTable <- table_list[[24]]
 2. Remove first row
 ```{r}
 japanTable2 <- japanTable[-1,]
-names(japanTable2) <-c("name","ractorNo", "reactorType","reactorModel","status","capacityNet","capacityGross","constructionDate","commercialDate","Closure")
+names(japanTable2) <-c("name","reactorNo", "reactorType","reactorModel","status","capacityNet","capacityGross","constructionDate","commercialDate","Closure")
 ```
 
 Change dates
@@ -48,7 +48,7 @@ ggplot(data= japanTable3, aes(y= capacityNet, x=constrDate, color=reactorType))+
 
 5.
 ```{r}
-ggplot(data= japanTable3, aes(y=name, x=constrDate))+geom_segment(aes(yend=name, xend=comDate))
+ggplot(data= japanTable3, aes(y=name, x=constrDate))+geom_segment(aes(yend=name, xend=comDate, color=reactorNo))
 ```
 
 

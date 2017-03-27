@@ -1,13 +1,108 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
-<!-- put your content after this line -->
+##Problem 15.1
+a)
+```{r}
+lubridate::mdy("April 30,1777")- lubridate::mdy("January 2,1996")
+```
+b)
+```{r}
+lubridate::mdy("06-23-1912")- lubridate::mdy("January 2,1996")
+```
+c)
+```{r}
+lubridate::dmy("3 March, 1847")- lubridate::mdy("January 2,1996")
+```
+d)
+```{r}
+lubridate::mdy_hm("November 11, 1918 at 11:00 am")- lubridate::mdy_hm("January 2,1996 at 11:00 am")
+```
+e)
+```{r}
+lubridate::mdy("July 20, 1969")- lubridate::mdy("January 2,1996")
+```
 
-Here is my content!
+##Problem 15.2  
+All of the values given in the example have some sort of punctuation or characters. Thus we can only use tidyr::extract_numeric.
+a)
+```{r}
+tidyr::extract_numeric("42,659.30")
+```
+b)
+```{r}
+tidyr::extract_numeric("17%")
+```
+c) 
+```{r}
+as.numeric("19")
+```
+
+d)
+```{r}
+tidyr::extract_numeric("$100")
+```
+
+e)
+```{r}
+tidyr::extract_numeric("9.8 m/seconds square")
+```
+f)
+```{r}
+tidyr::extract_numeric("9.8 m/s^2")
+```
+g) ASK ASK
+
+tidyr::extract_numeric("6.62606957*10^-34 m2 kg/s")
+
+h)
+```{r}
+as.numeric("6.62606957e-34")
+```
+i)
+```{r}
+tidyr::extract_numeric("42.659,30")
+```
+
+##Problem 16.1
+1) Boys' names ending with a vowel:
+```{r}
+BoysVowel <-
+  BabyNames %>%
+  filter(sex=="M") %>%
+  group_by(name) %>%
+  filter(grepl("[aeiou]$", name))%>%
+  summarise(total=sum(count))%>%
+  arrange(desc(total))%>%
+  head(10)
+```
+
+2) Names ending with "joe" or "jo"
+```{r}
+joeNames <-
+  BabyNames %>%
+  group_by(name) %>%
+  filter(grepl(".*(jo$|joe$)",name)) %>%
+  summarise(total=sum(count))%>%
+  arrange(desc(total))%>%
+  head(10)
+```
+
+##Problem 16.2
+This pattern would produce a string of numbers that starts with any digit except for 1 and 0 and is follow by 2 more digits. Then there is a ".","-" or "space" followed by three digits and again a ".","-" or "space" followed by four digits. This would match the different ways people write telephone numbers. The componenents of strings being extracted are punctuation and numbers.
+
+##Problem 16.3
+1. Each string will have two letters because the pattern is a letter plus another one from the list.
+2. Thre wil be 61 patterns which is the number of all the letters within the lists.
+3. These are all the state abbreviations in the USA.
+
+
+

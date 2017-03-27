@@ -63,7 +63,7 @@ The package is named using "="
 4. Quantitative:year","month","day","dep_time","sched_dep_time","dep_delay","arr_time","sched_arr_time","arr_delay","air_time","distance","hour","minute","time_hour"    
 Categorical: "carrier","flight","tailnum","origin","dest" 
 5. air_time= minutes 
-distance= miles  ASK AYOUB 
+distance= miles  
 
 2.8
 a. Improper syntax for function arument
