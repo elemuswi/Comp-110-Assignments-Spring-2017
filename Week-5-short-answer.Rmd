@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+##Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,63 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+### Problem 10.1 
+Since we are joining two tables together we need to include two tables in our code.
+
+### Problem 10.2
+The tables have a different number of cases, so they cannot be linked to each other side by side. 
+
+### Problem 10.3 
+1. Table B, since on a row we have country and the value for both years next to each other, so it is visually easy to compare the values, since they are next to each other.
+2. Table C, since we would join each country to ContinentData and then we would just sum one single column. 
+
+### Problem 11.1   
+a) Table 1: Male/Female babies named "Name" in a year
+Table 2: Babies named "Name"in a year and their gender
+Table 3: Babies named "Name" with a specific sex born in a 1912 and 2012 
+b) Narrow= Version One,  Wide= Version 2
+c) Sex
+d) Because Version One is the Narrow Version so there is no need to have F and M variables or year varibles (different years) per case.
+e) Because they have different variables per case.
+f) Year
+g) Sex and number of babies
+nbabies
+From each case and year
+
+### Problem 11.3 
+a) Narrow:C Wide:A (Country is expanded)
+b) Narrow:C Wide:B (Year is expanded)
+c) They are the same relative to each other.
+
+### Problem 11.4  
+When       sbp
+subject    BHO
+subject    GWB
+subject    WJC
+before     120
+before     115
+before     135
+after      160
+after      135
+after      145
+
+### Problem 11.5
+
+```{r}
+TablesData= load(url("http://tiny.cc/dcf/MeasTreatTables.rda"))
+```
+
+```{r}
+OutputTable <-
+  Measurements %>%
+  left_join(Treatments) %>%
+  mutate(when = ifelse(treatment_date<date, "after","before")) %>%
+  spread(key=what,value=value)
+```
+
+
+
+
+
+
