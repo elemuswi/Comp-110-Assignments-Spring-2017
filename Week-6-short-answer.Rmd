@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Esteban Lemus Wirtz 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,79 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Problem 12.1
+
+```{r}
+BabyNames %>% 
+  group_by(sex,name) %>%
+  summarise(total=sum(count)) %>%
+  filter(rank(desc(total))<=5)
+```
+
+###Problem 12.2
+```{r}
+PopularCounts <-
+  BabyNames %>%
+  group_by(year,name) %>%
+  summarise(count=sum(count)) %>%
+  mutate(frac_in_top_100= rank(desc(count)) <=100) %>%
+  group_by(year, frac_in_top_100) %>%
+  summarise(total= sum(count))
+GlyphReady <-
+  PopularCounts %>%
+  spread( frac_in_top_100, total) %>%
+  mutate(frac_in_top_100= `TRUE`/(`TRUE`+`FALSE`))
+ggplot(data= GlyphReady, aes(x= year, y=frac_in_top_100))+geom_line()
+```
+
+###Problem 12.3
+a) Summary 
+b) Neither
+c) Summary
+d) Transformation
+e) Transformation
+f) Summary
+g) Transformation
+h) Summary 
+
+###Problem 13.1
+1) 8 vertices: Japan, China, USSR, Germany, France, UK, USA, Italy
+2) There are 9 edges
+
+###Problem 13.2
+1) Vertices= A,B,C,D
+2) Table 2 
+3) Table 1: B and C are not directly connected.
+Table 3: C needs to be twice oce for A to C and once for C to D. 
+
+###Problem 13.3
+The correct table is Table 2 because Table 3 has the wrong directions and Table 1 connects vertices that are not even connected.
+
+###Problem 13.4
+1. Exports
+2. Population
+
+###Problem 14.1
+
+```{r}
+ggplot(data=CPS85, aes(x=sex, y=wage))+geom_boxplot(aes(fill=sex))
+```
+
+###Problem 14.3
+For women the height would be between 1.5 and 1.7 .
+For men the height would be between 1.7 and 1.9. 
+
+###Problem 14.7
+```{r}
+ggplot(data=CPS85, aes(y=wage, x=educ))+geom_point(aes(color=sex))+ stat_smooth(method="lm",aes(color=sex))+ylim(0,15)
+```
+
+###Problem 14.10
+```{r}
+ggplot(data=Galton, aes(x=height, group=sex))+geom_density(aes(color=sex, fill=sex),alpha=0.5)
+```
+
+
+
+
+
