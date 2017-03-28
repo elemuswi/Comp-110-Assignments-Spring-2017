@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,26 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Problem 17.2
+
+```{r}
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+1. Response variable: Price
+Explanatory Variables:
+-Living area
+-Bathrooms
+-Bedrooms
+-Fireplaces
+
+2. No, as we can see on the tree when we get to houses that are smaller than 1080, all of them have the same prices regardless of the number of bathrooms or any other variable.
+
+3.
+According to the model the typical price difference depending on the number of bathrooms is around $30 000.00.
+```{r}
+179796.647-151424.497
+```
+
+4. Yes, on the tree we can see that the prices of the houses increase depending on the number of fireplaces. This also depends on the size of the house since only houses that are bigger than 2816 sq feet have fireplaces.
+
