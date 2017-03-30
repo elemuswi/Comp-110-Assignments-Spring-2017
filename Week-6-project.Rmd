@@ -1,13 +1,79 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Esteban Lemus Wirtz
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r cache= TRUE}
+data_site <- 
+  "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds" 
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+###Task 1: Density Plot
+```{r}
+Trips %>%
+  ggplot(aes(x=sdate))+geom_density()
+```
+
+###Task 2: Events Versus Time of Day
+ASK WHAT IS MEANT BY FURTHER
+```{r}
+  Trips %>% 
+  mutate(time_of_day = 
+       lubridate::hour(sdate) + 
+         lubridate::minute(sdate) / 60)%>%
+  ggplot(aes(x=time_of_day))+geom_density()
+```
+###Task 3: Facet by Day of the Week
+
+```{r}
+  Trips %>%
+  mutate(time_of_day = 
+       lubridate::hour(sdate) + 
+         lubridate::minute(sdate) / 60)%>%
+  mutate(day_of_the_week= lubridate::wday(sdate))%>%
+  ggplot(aes(x=time_of_day))+geom_density()+facet_wrap(~day_of_the_week)
+```
+
+###Task 4: Set color  
+```{r}
+  Trips %>%
+  mutate(time_of_day = 
+       lubridate::hour(sdate) + 
+         lubridate::minute(sdate) / 60)%>%
+  mutate(day_of_the_week= lubridate::wday(sdate))%>%
+  ggplot(aes(x=time_of_day, color=client))+geom_density(aes(fill= client, alpha=0.3,))+facet_wrap(~day_of_the_week)
+```
+
+
+###Task 5: 
+
+```{r}
+  Trips %>%
+  mutate(time_of_day = 
+       lubridate::hour(sdate) + 
+         lubridate::minute(sdate) / 60)%>%
+  mutate(day_of_the_week= lubridate::wday(sdate))%>%
+  ggplot(aes(x=time_of_day, color=client))+geom_density(aes(fill= client, alpha=0.3), position=position_stack())+facet_wrap(~day_of_the_week)
+```
+
+
+###Task 6 
+```{r}
+  Trips %>%
+  mutate(time_of_day = 
+       lubridate::hour(sdate) + 
+         lubridate::minute(sdate) / 60)%>%
+  mutate(wday = ifelse(lubridate::wday(sdate) %in% c(1,7), "weekend","weekday" ))%>%
+  ggplot(aes(x=time_of_day, color=client))+geom_density(aes(fill= client, alpha=0.3))+facet_wrap(~wday)
+```
+
+
